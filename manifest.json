@@ -1,0 +1,14 @@
+{
+"name":"Sendvič hunter",
+"description":"Ocenite koliko je komentar zaslužio sendviča!",
+"version":"0.1",
+"manifest_version":2,
+"permissions": ["http://www.blic.rs/*","https://www.blic.rs/*"],
+"content_scripts": [
+    {
+      "matches": ["http://www.blic.rs/*","https://www.blic.rs/*"],
+      "js": ["myscript.js"]
+    }
+  ]
+}
+
