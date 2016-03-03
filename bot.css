@@ -1,0 +1,16 @@
+.bot_button, .not_button, .thanks {
+    /*font-weight: bold;    */
+    font-size: 120%;
+    padding-right: 10px;
+}
+
+.bot_button {
+    color: red ;
+}
+
+.not_button {
+    color: #55ff55 !important;
+}
+
+
+
