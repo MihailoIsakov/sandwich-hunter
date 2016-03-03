@@ -10,22 +10,28 @@ thank = function(element) {
 // Collects the information about the comment 
 //   - the authors username, timestamp, votes...
 collect_data = function(element) {
-    var id = element.find(".k_commentHolder").id();
-    var link = null;
-    var author = element.find(".k_author").text();
-    var comment = element.find(".k_content").text();
-    var vote_number = element.find(".k_nForum_MarkTipCount span").text();
-    var upvotes = element.find(".k_nForum_MarkTipUpPercent").text();
-    var downvotes = element.find(".k_nForum_MarkTipDownPercent").text();
+    element = element.closest(".k_nForum_ReaderItem").first();
+    var id = element.find(".k_commentHolder").attr('id').match(/\d+/g)[0];
+    var link = $(location).attr('href');
+    var author = element.find(".k_author").text().trim();
+    var parent_author = element.find(".k_parentAuthor").text().trim();
+    var comment = element.find(".k_content").text().trim();
+    var vote_number = element.find(".k_nForum_MarkTipCount span").text().trim();
+    var upvotes = element.find(".k_nForum_MarkTipUpPercent").text().trim();
+    var downvotes = element.find(".k_nForum_MarkTipDownPercent").text().trim();
 
     data = {
         'id': id,
+        'link': link,
         'author': author,
+        'parent_author': parent_author,
         'comment': comment,
         'vote_number': vote_number,
         'upvotes': upvotes,
         'downvotes': downvotes
     };
+
+    return data;
 };
 
 // Send the collected data to a server
@@ -69,6 +75,7 @@ $(document).ready(function() {
         // Set the comment background
         $(this).closest(".k_nForum_ReaderContentFrame").css("background", BOT_BACKGROUND);
         thank($(this));
+        data = collect_data($(this));
     });
 
     $(".not_button").click(function() {
@@ -79,5 +86,7 @@ $(document).ready(function() {
         // Set the comment background
         $(this).closest(".k_nForum_ReaderContentFrame").css("background", NOT_BACKGROUND);
         thank($(this));
+        data = collect_data($(this));
+    });
     });
 });
