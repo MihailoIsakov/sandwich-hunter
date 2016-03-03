@@ -2,6 +2,7 @@
     /*font-weight: bold;    */
     font-size: 120%;
     padding-right: 10px;
+    /*float: right;*/
 }
 
 .bot_button {
@@ -9,8 +10,23 @@
 }
 
 .not_button {
-    color: #55ff55 !important;
+    color: green !important;
 }
 
+.thanks {
+    color: white;
+}
 
+.k_nForum_Actions {
+    width: 80% !important;
+    /*width: auto;*/
+}
 
+.k_nForum_CommentInfo {
+    width: 20% !important;
+}
+
+/*Hide the timestamp*/
+.k_nForum_CommentInfo span:nth-child(1), .k_nForum_CommentInfo span:nth-child(2) {
+    display: none;
+}

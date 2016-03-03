@@ -4,20 +4,46 @@ NOT_BACKGROUND = "#ddffdd";
 
 // Adds a than you message after the bot or not bot button is clicked
 thank = function(element) {
-    //thanks = $(element).closest(".k_nForum_Actions").find(".thanks");
-    //if (!thanks) {
-        $(element).closest(".k_nForum_Actions").prepend(
-            $("<span>", {
-                text: "Hvala!",
-                class: "thanks"
-            })
-        );
-    //}
+    thanks = $(element).closest(".k_nForum_Actions").find(".thanks").css("color", "grey");
 };
 
+// Collects the information about the comment 
+//   - the authors username, timestamp, votes...
+collect_data = function(element) {
+    var id = element.find(".k_commentHolder").id();
+    var link = null;
+    var author = element.find(".k_author").text();
+    var comment = element.find(".k_content").text();
+    var vote_number = element.find(".k_nForum_MarkTipCount span").text();
+    var upvotes = element.find(".k_nForum_MarkTipUpPercent").text();
+    var downvotes = element.find(".k_nForum_MarkTipDownPercent").text();
+
+    data = {
+        'id': id,
+        'author': author,
+        'comment': comment,
+        'vote_number': vote_number,
+        'upvotes': upvotes,
+        'downvotes': downvotes
+    };
+};
+
+// Send the collected data to a server
+
+
+// Once ready, manipulate the DOM
 $(document).ready(function() {
+    // Delete the timestamp to make some space
+    //$(".k_nForum_CommentInfo").first().remove();
+
     // Add the buttons
     $(".k_nForum_Actions").each(function() {
+        $(this).prepend(
+            $("<span>", {
+                text: "Hvala!",
+                class: "thanks",
+            })
+        );
         // Add the not bot button
         $(this).prepend(
             $("<a>", {
@@ -54,5 +80,4 @@ $(document).ready(function() {
         $(this).closest(".k_nForum_ReaderContentFrame").css("background", NOT_BACKGROUND);
         thank($(this));
     });
-
 });
