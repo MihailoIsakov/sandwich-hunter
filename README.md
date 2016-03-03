@@ -4,6 +4,7 @@ korisnika.
 
 Iz komentara kod treba da iskasapi:
     ID komentara,
+    link za komentar,
     username komentatora, 
     opcionalno kome je komentar upucen,
     rejting komentara,
