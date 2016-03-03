@@ -8,3 +8,4 @@ Iz komentara kod treba da iskasapi:
     opcionalno kome je komentar upucen,
     rejting komentara,
     broj glasova na komentaru
+    vreme kada je komentar poslat
