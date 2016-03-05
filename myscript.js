@@ -1,6 +1,11 @@
 BOT_BACKGROUND = "#ffdddd";
 NOT_BACKGROUND = "#ddffdd";
 
+// Get the generated user ID
+chrome.runtime.sendMessage({method: "getId"}, function(response) {
+    userid = response.status;
+});
+
 // Adds a than you message after the bot or not bot button is clicked
 thank = function(element) {
     thanks = $(element).closest(".k_nForum_Actions").find(".thanks").css("color", "grey");
@@ -18,10 +23,11 @@ collect_data = function(element) {
     var vote_count = element.find(".k_nForum_MarkTipCount span").text().trim();
     var upvotes = element.find(".k_nForum_MarkTipUpPercent").text().trim();
     var downvotes = element.find(".k_nForum_MarkTipDownPercent").text().trim();
-    var timestamp = element.find("k_nForum_CommentInfo span")[0].text().trim();
+    //var timestamp = element.find("k_nForum_CommentInfo span")[0].text().trim();
     // TODO add user id, email, and response
 
     data = {
+        'userid': userid,
         'id': id,
         'link': link,
         'author': author,
@@ -30,9 +36,10 @@ collect_data = function(element) {
         'vote_count': vote_count,
         'upvotes': upvotes,
         'downvotes': downvotes,
-        'timestamp': timestamp
+        //'timestamp': timestamp
     };
 
+    console.log(data);
     return data;
 };
 
