@@ -1,4 +1,3 @@
-
 BOT_BACKGROUND = "#ffdddd";
 NOT_BACKGROUND = "#ddffdd";
 
@@ -16,9 +15,11 @@ collect_data = function(element) {
     var author = element.find(".k_author").text().trim();
     var parent_author = element.find(".k_parentAuthor").text().trim();
     var comment = element.find(".k_content").text().trim();
-    var vote_number = element.find(".k_nForum_MarkTipCount span").text().trim();
+    var vote_count = element.find(".k_nForum_MarkTipCount span").text().trim();
     var upvotes = element.find(".k_nForum_MarkTipUpPercent").text().trim();
     var downvotes = element.find(".k_nForum_MarkTipDownPercent").text().trim();
+    var timestamp = element.find("k_nForum_CommentInfo span")[0].text().trim();
+    // TODO add user id, email, and response
 
     data = {
         'id': id,
@@ -26,9 +27,10 @@ collect_data = function(element) {
         'author': author,
         'parent_author': parent_author,
         'comment': comment,
-        'vote_number': vote_number,
+        'vote_count': vote_count,
         'upvotes': upvotes,
-        'downvotes': downvotes
+        'downvotes': downvotes,
+        'timestamp': timestamp
     };
 
     return data;
@@ -76,6 +78,7 @@ $(document).ready(function() {
         $(this).closest(".k_nForum_ReaderContentFrame").css("background", BOT_BACKGROUND);
         thank($(this));
         data = collect_data($(this));
+        data['bot'] = true;
     });
 
     $(".not_button").click(function() {
@@ -87,6 +90,6 @@ $(document).ready(function() {
         $(this).closest(".k_nForum_ReaderContentFrame").css("background", NOT_BACKGROUND);
         thank($(this));
         data = collect_data($(this));
-    });
+        data['bot'] = false;
     });
 });
