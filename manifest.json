@@ -4,6 +4,7 @@
 "version":"0.1",
 "manifest_version":2,
 "permissions": [ 
+    "storage",
     "http://www.blic.rs/*",
     "https://www.blic.rs/*"
 ],
@@ -13,6 +14,9 @@
       "js": ["jquery-1.12.1.min.js", "myscript.js"],
       "css": ["bot.css"]
     }
-  ]
+  ],
+"background": {
+    "scripts": ["background.js"]
+    }
 }
 
