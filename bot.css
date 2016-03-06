@@ -14,7 +14,8 @@
 }
 
 .thanks {
-    color: white;
+    color: grey;
+    visibility: hidden;
 }
 
 .k_nForum_Actions {
