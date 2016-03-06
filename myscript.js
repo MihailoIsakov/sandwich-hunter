@@ -8,7 +8,20 @@ chrome.runtime.sendMessage({method: "getId"}, function(response) {
 
 // Adds a than you message after the bot or not bot button is clicked
 thank = function(element) {
-    thanks = $(element).closest(".k_nForum_Actions").find(".thanks").css("color", "grey");
+    thanks = $(element).closest(".k_nForum_Actions").find(".thanks").css("visibility", "visible");
+};
+
+send_data = function(data, thank_button) {
+    $.ajax({
+        type: "POST",
+        url: "http://0.0.0.0:5000/comment",
+        data: data,
+        dataType: 'jsonp',
+    }).done(function(data, textStatus, jqXHR) {
+        thank(thank_button); 
+    }).fail(function() {
+        thank(thank_button); 
+    });
 };
 
 // Collects the information about the comment 
@@ -39,7 +52,6 @@ collect_data = function(element) {
         //'timestamp': timestamp
     };
 
-    console.log(data);
     return data;
 };
 
@@ -83,9 +95,9 @@ $(document).ready(function() {
 
         // Set the comment background
         $(this).closest(".k_nForum_ReaderContentFrame").css("background", BOT_BACKGROUND);
-        thank($(this));
         data = collect_data($(this));
         data['bot'] = true;
+        send_data(data, $(this));
     });
 
     $(".not_button").click(function() {
@@ -95,8 +107,8 @@ $(document).ready(function() {
 
         // Set the comment background
         $(this).closest(".k_nForum_ReaderContentFrame").css("background", NOT_BACKGROUND);
-        thank($(this));
         data = collect_data($(this));
         data['bot'] = false;
+        send_data(data, $(this));
     });
 });
