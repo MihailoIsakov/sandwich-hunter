@@ -14,7 +14,7 @@ thank = function(element) {
 send_data = function(data, thank_button) {
     $.ajax({
         type: "POST",
-        url: "http://0.0.0.0:5000/comment",
+        url: "http://46.101.172.101/comment",
         data: data,
         dataType: 'jsonp',
     }).done(function(data, textStatus, jqXHR) {
