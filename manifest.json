@@ -1,6 +1,6 @@
 {
-"name":"Sendvič hunter",
-"description":"Ocenite koliko je komentar zaslužio sendviča!",
+"name":"Lovac na sendviče",
+"description":"Ocenite koliko je komentar na Blicu zaslužio sendviča!",
 "version":"0.1",
 "manifest_version":2,
 "permissions": [ 
