@@ -15,7 +15,7 @@ thank = function(element, data) {
 send_data = function(data, thank_button) {
     $.ajax({
         type: "GET",
-        url: "http://0.0.0.0:5000/comment",
+        url: "http://46.101.172.101/comment",
         data: data,
         success: function(response) {
             thank(thank_button, response);
