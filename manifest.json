@@ -3,7 +3,12 @@
 "description":"Ocenite koliko je komentar na Blicu zaslužio sendviča!",
 "version":"0.1",
 "manifest_version":2,
+"icons": { 
+    "48": "sandwich48.png",
+    "128": "sandwich128.png"
+},
 "permissions": [ 
+    "http://0.0.0.0:5000/*",
     "storage",
     "http://www.blic.rs/*",
     "https://www.blic.rs/*"

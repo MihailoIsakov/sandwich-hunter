@@ -7,20 +7,27 @@ chrome.runtime.sendMessage({method: "getId"}, function(response) {
 });
 
 // Adds a than you message after the bot or not bot button is clicked
-thank = function(element) {
+thank = function(element, data) {
     thanks = $(element).closest(".k_nForum_Actions").find(".thanks").css("visibility", "visible");
+
+    thanks = $(element).closest(".k_nForum_Actions").find(".bot_count").text(data.bot_count);
+    thanks = $(element).closest(".k_nForum_Actions").find(".not_count").text(data.not_count);
 };
 
 send_data = function(data, thank_button) {
     $.ajax({
-        type: "POST",
-        url: "http://46.101.172.101/comment",
+        type: "GET",
+        url: "http://0.0.0.0:5000/comment",
         data: data,
-        dataType: 'jsonp',
+        //jsonp: "callback",
+        //dataType: 'jsonp',
+        success: function(response) {
+            console.log(response);
+        },
     }).done(function(data, textStatus, jqXHR) {
-        thank(thank_button); 
-    }).fail(function() {
-        thank(thank_button); 
+        thank(thank_button, data); 
+    }).fail(function(data, textStatus, jqXHR) {
+        thank(thank_button, data); 
     });
 };
 
@@ -71,6 +78,12 @@ $(document).ready(function() {
                 class: "thanks",
             })
         );
+        $(this).prepend(
+            $("<span>", {
+                text: "",
+                class: "not_count",
+            })
+        );
         // Add the not bot button
         $(this).prepend(
             $("<a>", {
@@ -83,6 +96,12 @@ $(document).ready(function() {
             $("<a>", {
                 text: "BOT!",
                 class: "bot_button",
+            })
+        );
+        $(this).prepend(
+            $("<span>", {
+                text: "",
+                class: "bot_count",
             })
         );
     });
