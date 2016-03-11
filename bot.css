@@ -1,22 +1,22 @@
-.bot_button, .not_button, .thanks {
+.bot_button, .not_button, .thanks, .bot_count, .not_count {
     /*font-weight: bold;    */
     font-size: 120%;
     padding-right: 10px;
     /*float: right;*/
 }
 
-.bot_button {
+.bot_button, .bot_count {
     color: red ;
 }
 
-.not_button {
+.not_button, .not_count {
     color: green !important;
 }
 
-.thanks {
-    color: grey;
-    visibility: hidden;
-}
+/*.thanks {*/
+    /*color: grey;*/
+    /*visibility: hidden;*/
+/*}*/
 
 .k_nForum_Actions {
     width: 80% !important;

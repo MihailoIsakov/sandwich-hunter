@@ -8,8 +8,6 @@ chrome.runtime.sendMessage({method: "getId"}, function(response) {
 
 // Adds a than you message after the bot or not bot button is clicked
 thank = function(element, data) {
-    thanks = $(element).closest(".k_nForum_Actions").find(".thanks").css("visibility", "visible");
-
     thanks = $(element).closest(".k_nForum_Actions").find(".bot_count").text(data.bot_count);
     thanks = $(element).closest(".k_nForum_Actions").find(".not_count").text(data.not_count);
 };
@@ -19,15 +17,9 @@ send_data = function(data, thank_button) {
         type: "GET",
         url: "http://0.0.0.0:5000/comment",
         data: data,
-        //jsonp: "callback",
-        //dataType: 'jsonp',
         success: function(response) {
-            console.log(response);
+            thank(thank_button, response);
         },
-    }).done(function(data, textStatus, jqXHR) {
-        thank(thank_button, data); 
-    }).fail(function(data, textStatus, jqXHR) {
-        thank(thank_button, data); 
     });
 };
 
@@ -72,12 +64,6 @@ $(document).ready(function() {
 
     // Add the buttons
     $(".k_nForum_Actions").each(function() {
-        $(this).prepend(
-            $("<span>", {
-                text: "Hvala!",
-                class: "thanks",
-            })
-        );
         $(this).prepend(
             $("<span>", {
                 text: "",
