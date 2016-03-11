@@ -1,7 +1,7 @@
 {
 "name":"Lovac na sendviče",
 "description":"Ocenite koliko je komentar na Blicu zaslužio sendviča!",
-"version":"0.1",
+"version":"0.2",
 "manifest_version":2,
 "icons": { 
     "48": "sandwich48.png",
