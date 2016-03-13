@@ -1,0 +1,6 @@
+.rate-comment-container {
+    float: right !important;
+}
+.rate-comment-container .rc-item:first-child {
+    padding-right: 10px !important;
+}
