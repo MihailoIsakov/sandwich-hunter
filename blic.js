@@ -54,11 +54,9 @@ collect_data = function(element) {
     return data;
 };
 
-// Send the collected data to a server
-
 
 // Once ready, manipulate the DOM
-$(document).ready(function() {
+blic_ready = function() {
     // Delete the timestamp to make some space
     //$(".k_nForum_CommentInfo").first().remove();
 
@@ -116,4 +114,4 @@ $(document).ready(function() {
         data['bot'] = false;
         send_data(data, $(this));
     });
-});
+};

@@ -16,12 +16,16 @@
 "content_scripts": [
     {
       "matches": [
-        "http://www.blic.rs/*",
-        "https://www.blic.rs/*",
-        "http://www.b92.net/*",
-        "https://www.b92.net/*",
+          "http://www.blic.rs/*",
+          "https://www.blic.rs/*",
+          "http://www.b92.net/*",
+          "https://www.b92.net/*"
       ],
-      "js": ["jquery-1.12.1.min.js", "myscript.js"],
+      "js": [
+          "jquery-1.12.1.min.js", 
+          "sites.js",
+          "blic.js"
+      ],
       "css": ["bot.css"]
     }
   ],
