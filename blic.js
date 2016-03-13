@@ -114,4 +114,4 @@ $(document).ready(function() {
         data['bot'] = false;
         send_data(data, $(this));
     });
-};
+});
