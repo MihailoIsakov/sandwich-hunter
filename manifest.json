@@ -21,7 +21,6 @@
       ],
       "js": [
           "jquery-1.12.1.min.js", 
-          "sites.js",
           "blic.js"
       ],
       "css": ["blic.css"]
@@ -33,7 +32,6 @@
       ],
       "js": [
           "jquery-1.12.1.min.js", 
-          "sites.js",
           "b92.js"
       ],
       "css": ["b92.css"]

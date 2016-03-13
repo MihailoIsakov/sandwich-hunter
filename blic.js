@@ -56,7 +56,7 @@ collect_data = function(element) {
 
 
 // Once ready, manipulate the DOM
-blic_ready = function() {
+$(document).ready(function() {
     // Delete the timestamp to make some space
     //$(".k_nForum_CommentInfo").first().remove();
 
