@@ -61,28 +61,32 @@ $(document).ready(function() {
     //$(".k_nForum_CommentInfo").first().remove();
 
     // Add the buttons
-    $(".rate-comment-container").each(function() {
-        $(this).prepend(
+    //$(".rate-comment-container").each(function() {
+    $(".rate-comment-row").each(function() {
+        holder = $("<div>", {class: "holder rc-item"});
+        $(this).prepend(holder);
+
+        holder.prepend(
             $("<span>", {
                 text: "",
-                class: "not_count",
+                class: "not_count rc-item",
             })
         );
         // Add the not bot button
-        $(this).prepend(
+        holder.prepend(
             $("<a>", {
                 text: "nije bot",
                 class: "not_button",
             })
         );
-        // Add the bot button
-        $(this).prepend(
+        //Add the bot button
+        holder.prepend(
             $("<a>", {
                 text: "BOT!",
                 class: "bot_button",
             })
         );
-        $(this).prepend(
+        holder.prepend(
             $("<span>", {
                 text: "",
                 class: "bot_count",

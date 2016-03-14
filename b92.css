@@ -1,6 +1,35 @@
-.rate-comment-container {
-    float: right !important;
+/*.rate-comment-container {*/
+    /*vertical-align:top */
+    /*[>width: 100%;<]*/
+/*}*/
+/*.rate-comment-container .rc-item:first-child {*/
+    /*float: right !important;*/
+    /*padding-right: 10px !important;*/
+/*}*/
+
+.rate-comment-row .rate-comment-container {
+    vertical-align:top;
 }
-.rate-comment-container .rc-item:first-child {
-    padding-right: 10px !important;
+
+.rc-item {
+    margin-top: 0px !important;
+}
+
+.holder {
+    margin-right: 200px !important;
+}
+
+.bot_button, .not_button, .bot_count, .not_count {
+    margin-top: 10px !important;
+    margin-right: 10px !important;
+    font-size: 15px !important;
+    vertical-align:top;
+}
+
+.bot_button, .bot_count {
+    color: red !important;
+}
+
+.not_button, .not_count {
+    color: green !important;
 }
