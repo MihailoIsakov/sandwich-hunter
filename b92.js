@@ -8,14 +8,15 @@ chrome.runtime.sendMessage({method: "getId"}, function(response) {
 
 // Adds a than you message after the bot or not bot button is clicked
 thank = function(element, data) {
-    thanks = $(element).closest(".k_nForum_Actions").find(".bot_count").text(data.bot_count);
-    thanks = $(element).closest(".k_nForum_Actions").find(".not_count").text(data.not_count);
+    thanks = $(element).closest("li").find(".bot_count").text(data.bot_count);
+    thanks = $(element).closest("li").find(".not_count").text(data.not_count);
 };
 
 send_data = function(data, thank_button) {
     $.ajax({
         type: "GET",
-        url: "http://46.101.172.101/comment",
+        //url: "http://0.0.0.0:5000/b92",
+        url: "http://46.101.172.101/b92",
         data: data,
         success: function(response) {
             thank(thank_button, response);
@@ -26,15 +27,14 @@ send_data = function(data, thank_button) {
 // Collects the information about the comment 
 //   - the authors username, timestamp, votes...
 collect_data = function(element) {
-    element = element.closest(".k_nForum_ReaderItem").first();
-    var id = element.find(".k_commentHolder").attr('id').match(/\d+/g)[0];
+    var id = element.attr('id');
     var link = $(location).attr('href');
-    var author = element.find(".k_author").text().trim();
-    var parent_author = element.find(".k_parentAuthor").text().trim();
-    var comment = element.find(".k_content").text().trim();
+    var author = element.find(".comment-author").text().trim();
+    var parent_author = "";
+    var comment = element.text().trim();
     var vote_count = element.find(".k_nForum_MarkTipCount span").text().trim();
-    var upvotes = element.find(".k_nForum_MarkTipUpPercent").text().trim();
-    var downvotes = element.find(".k_nForum_MarkTipDownPercent").text().trim();
+    var upvotes = element.find(".rate-up span").text().trim();
+    var downvotes = element.find(".rate-dn span").text().trim();
     //var timestamp = element.find("k_nForum_CommentInfo span")[0].text().trim();
     // TODO add user id, email, and response
 
@@ -101,8 +101,9 @@ $(document).ready(function() {
         $(this).css("font-weight", "bold");
 
         // Set the comment background
-        $(this).closest(".k_nForum_ReaderContentFrame").css("background", BOT_BACKGROUND);
-        data = collect_data($(this));
+        comment = $(this).closest("li");
+        comment.css("background", BOT_BACKGROUND);
+        data = collect_data(comment);
         data['bot'] = true;
         send_data(data, $(this));
     });
@@ -113,8 +114,9 @@ $(document).ready(function() {
         $(this).css("font-weight", "bold");
 
         // Set the comment background
-        $(this).closest(".k_nForum_ReaderContentFrame").css("background", NOT_BACKGROUND);
-        data = collect_data($(this));
+        comment = $(this).closest("li");
+        comment.css("background", NOT_BACKGROUND);
+        data = collect_data(comment);
         data['bot'] = false;
         send_data(data, $(this));
     });
