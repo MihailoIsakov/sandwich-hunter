@@ -15,8 +15,8 @@ thank = function(element, data) {
 send_data = function(data, thank_button) {
     $.ajax({
         type: "GET",
-        url: "http://46.101.172.101/n1",
-        //url: "http://0.0.0.0:5000/blic",
+        //url: "http://46.101.172.101/n1",
+        url: "http://0.0.0.0:5000/n1",
         data: data,
         success: function(response) {
             thank(thank_button, response);
@@ -27,15 +27,20 @@ send_data = function(data, thank_button) {
 // Collects the information about the comment 
 //   - the authors username, timestamp, votes...
 collect_data = function(element) {
-    element = element.closest(".k_nForum_ReaderItem").first();
-    var id = element.find(".k_commentHolder").attr('id').match(/\d+/g)[0];
+    element = element.closest(".comment-unit").first();
+    if(element.find(".js_replyComment").length) {
+        var id = element.find(".js_replyComment").attr('data-comm-id');
+    } else { 
+        var id = element.find(".js_toggleLike").attr('id');
+    }
     var link = $(location).attr('href');
-    var author = element.find(".k_author").text().trim();
-    var parent_author = element.find(".k_parentAuthor").text().trim();
-    var comment = element.find(".k_content").text().trim();
-    var vote_count = element.find(".k_nForum_MarkTipCount span").text().trim();
-    var upvotes = element.find(".k_nForum_MarkTipUpPercent").text().trim();
-    var downvotes = element.find(".k_nForum_MarkTipDownPercent").text().trim();
+    var author = element.find(".comment-author").text().trim();
+    //var parent_author = element.find(".k_parentAuthor").text().trim();
+    var parent_author = ''
+    var comment = element.find(".comment-text").text().trim();
+    var vote_count = '';
+    var upvotes = element.find(".comment-likes .js_likeNum").text().trim();
+    var downvotes = element.find(".comment-dislikes .js_likeNum").text().trim();
     //var timestamp = element.find("k_nForum_CommentInfo span")[0].text().trim();
     // TODO add user id, email, and response
 
@@ -44,9 +49,7 @@ collect_data = function(element) {
         'id': id,
         'link': link,
         'author': author,
-        'parent_author': parent_author,
         'comment': comment,
-        'vote_count': vote_count,
         'upvotes': upvotes,
         'downvotes': downvotes,
         //'timestamp': timestamp
@@ -61,8 +64,8 @@ $(document).ready(function() {
 
     // Add the buttons
     $(".comment-likes").each(function() {
-        var bot_button = $('<span class="btn btn-grey no-translate-y comment-dislikes js_toggleLike><span class="js_likeNum bot_button" >BOT!</span></span>');
-        var not_button = $('<span class="btn btn-grey no-translate-y comment-dislikes js_toggleLike><span class="js_likeNum not_button" >nije bot</span></span>');
+        var bot_button = $('<span class="btn btn-grey no-translate-y bot_button"><span class="js_likeNum" >BOT!</span></span>');
+        var not_button = $('<span class="btn btn-grey no-translate-y not_button"><span class="js_likeNum" >nije bot</span></span>');
 
         bot_button.insertBefore(this);
         not_button.insertBefore(this);
@@ -75,7 +78,8 @@ $(document).ready(function() {
         $(this).css("font-weight", "bold");
 
         // Set the comment background
-        $(this).closest(".k_nForum_ReaderContentFrame").css("background", BOT_BACKGROUND);
+        $(this).closest(".comment-unit").css("background", BOT_BACKGROUND);
+
         data = collect_data($(this));
         data['bot'] = true;
         send_data(data, $(this));
@@ -87,7 +91,8 @@ $(document).ready(function() {
         $(this).css("font-weight", "bold");
 
         // Set the comment background
-        $(this).closest(".k_nForum_ReaderContentFrame").css("background", NOT_BACKGROUND);
+        $(this).closest(".comment-unit").css("background", NOT_BACKGROUND);
+
         data = collect_data($(this));
         data['bot'] = false;
         send_data(data, $(this));
