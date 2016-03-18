@@ -1,0 +1,9 @@
+.bot_button, .bot_button:hover  {
+    color: red !important;
+    font-weight: 300;
+}
+
+.not_button, .not_button:hover {
+    color: green !important;
+    font-weight: 300;
+}
