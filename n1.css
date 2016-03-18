@@ -1,9 +1,9 @@
-.bot_button> span, .bot_button span:hover  {
+.bot_button span, .bot_button span:hover  {
     color: red !important;
     font-weight: 400;
 }
 
-.not_button> span, .not_button span:hover {
+.not_button span, .not_button span:hover {
     color: green !important;
     font-weight: 400;
 }
