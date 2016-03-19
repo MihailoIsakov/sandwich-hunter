@@ -1,11 +1,15 @@
-.bot_button span, .bot_button span:hover  {
-    color: red !important;
+.not_button span, .bot_button span {
+    font-size: 13px!important;
+    /*margin-right: 5px!important;*/
     font-weight: 400;
 }
 
-.not_button span, .not_button span:hover {
+.bot_button span {
+    color: red !important;
+}
+
+.not_button span {
     color: green !important;
-    font-weight: 400;
 }
 
 .not_button, .bot_button {
@@ -17,11 +21,4 @@
     -moz-transition: all 100ms ease-in-out;
     -webkit-transition: all 100ms ease-in-out;
     transition: all 100ms ease-in-out!important;
-}
-
-/*.not_button>span, .bot_button>span {*/
-.not_button span, .bot_button span {
-    color: #737373!important;
-    font-size: 13px!important;
-    margin-right: 5px!important;
 }
